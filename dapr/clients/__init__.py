@@ -189,7 +189,8 @@ class DaprClient(DaprGrpcClient):
             )
         else:
             raise NotImplementedError(
-                'Please use `dapr.aio.clients.DaprClient` for async invocation')
+                'Please use `dapr.aio.clients.DaprClient` for async invocation'
+            )
 
     def wait(self, timeout_s: float):
         """Wait for the client to become ready. If the client is already ready, this

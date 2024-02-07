@@ -26,7 +26,7 @@ class DaprHealthClient:
     """Dapr Health Client"""
 
     def __init__(self, timeout: Optional[int] = 60):
-        self._client = DaprHttpClient(DefaultJSONSerializer(), timeout, None, None)
+        self._client = DaprHttpClient(DefaultJSONSerializer(), timeout, None)
 
     async def wait_async(self, timeout_s: int):
         """Wait for the client to become ready. If the client is already ready, this
@@ -38,6 +38,7 @@ class DaprHealthClient:
         Throws:
             DaprInternalError: if the timeout expires.
         """
+
         async def make_request() -> bool:
             _, r = await self._client.send_bytes(
                 method='GET',
@@ -45,9 +46,10 @@ class DaprHealthClient:
                 url=f'{self._client.get_api_url()}/healthz/outbound',
                 data=None,
                 query_params=None,
-                timeout=timeout_s)
+                timeout=timeout_s,
+            )
 
-            return r.status >= 200 and r.status < 300
+            return 200 <= r.status < 300
 
         start = time.time()
         while True:
