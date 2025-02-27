@@ -1073,17 +1073,17 @@ class DecryptResponse(CryptoResponse[TCryptoResponse]):
     ...
 
 
-@dataclass
 class ConversationResult:
     """Result from a single conversation input."""
 
-    result: str
-    parameters: Dict[str, GrpcAny] = field(default_factory=dict)
+    def __init__(self, result: str, parameters: Optional[Dict[str, GrpcAny]] = None):
+        self.result = result
+        self.parameters = parameters or {}
 
 
-@dataclass
 class ConversationResponse:
     """Response from the conversation API."""
 
-    context_id: Optional[str]
-    outputs: List[ConversationResult]
+    def __init__(self, context_id: Optional[str], outputs: List[ConversationResult]):
+        self.context_id = context_id
+        self.outputs = outputs

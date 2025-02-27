@@ -420,11 +420,10 @@ class DecryptRequestIterator(DaprRequest):
         self.seq += 1
         return request_proto
 
-
-@dataclass
 class ConversationInput:
     """A single input message for the conversation."""
 
-    content: str
-    role: Optional[str] = None
-    scrub_pii: Optional[bool] = None
+    def __init__(self, content: str, role: Optional[str] = None, scrub_pii: Optional[bool] = None):
+        self.content = content
+        self.role = role
+        self.scrub_pii = scrub_pii
