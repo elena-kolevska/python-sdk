@@ -427,3 +427,5 @@ class ConversationInput:
         self.content = content
         self.role = role
         self.scrub_pii = scrub_pii
+
+        print("---------------- New input --------------------------------------------************")
