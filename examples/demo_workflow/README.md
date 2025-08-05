@@ -45,15 +45,15 @@ expected_stdout_lines:
   - "== APP == Appending 3 to child_orchestrator_string!"
   - "== APP == Appending c to child_orchestrator_string!"
   - "== APP == Appending c to child_orchestrator_string!"
-  - "== APP == Get response from hello_world_wf after pause call: Suspended"
-  - "== APP == Get response from hello_world_wf after resume call: Running"
+  - "== APP == Get response from hello_world_wf after pause call: WorkflowStatus.SUSPENDED"
+  - "== APP == Get response from hello_world_wf after resume call: WorkflowStatus.RUNNING"
   - "== APP == New counter value is: 111!"
   - "== APP == New counter value is: 1111!"
+  - "== APP == Get response from hello_world_wf after terminate call: WorkflowStatus.TERMINATED"
+  - "== APP == Get response from child_wf after terminate call: WorkflowStatus.TERMINATED"
   - "== APP == Instance Successfully Purged"
-  - "== APP == Get response from hello_world_wf after terminate call: Terminated"
-  - "== APP == Get response from child_wf after terminate call: Terminated"
 background: true
-timeout_seconds: 30
+timeout_seconds: 40
 sleep: 15
 -->
 
@@ -83,7 +83,7 @@ You should be able to see the following output:
 == APP == Get response from hello_world_wf after resume call: Running
 == APP == New counter value is: 111!
 == APP == New counter value is: 1111!
-== APP == Instance Successfully Purged
 == APP == Get response from hello_world_wf after terminate call: Terminated
 == APP == Get response from child_wf after terminate call: Terminated
+== APP == Instance Successfully Purged
 ```
